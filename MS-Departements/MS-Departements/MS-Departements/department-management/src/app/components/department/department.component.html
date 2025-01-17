@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Gestion des Départements</h2>
+
+  <!-- Formulaire de création de département -->
+  <form (ngSubmit)="createDepartment()">
+    <div>
+      <label for="name">Nom du Département :</label>
+      <input type="text" id="name" [(ngModel)]="newDepartment.name" name="name" required />
+    </div>
+    <button type="submit">Créer</button>
+  </form>
+
+  <!-- Formulaire pour ajouter un sous-département -->
+  <form (ngSubmit)="addSubDepartment()">
+    <div>
+      <label for="parentId">ID du Département Parent :</label>
+      <input type="number" id="parentId" [(ngModel)]="parentId" name="parentId" required />
+    </div>
+    <div>
+      <label for="subDepartmentName">Nom du Sous-Département :</label>
+      <input type="text" id="subDepartmentName" [(ngModel)]="newDepartment.name" name="subDepartmentName" required />
+    </div>
+    <button type="submit">Ajouter un Sous-Département</button>
+  </form>
+
+  <!-- Formulaire pour attribuer un responsable -->
+  <form (ngSubmit)="assignManager()">
+    <div>
+      <label for="managerId">ID du Responsable :</label>
+      <input type="number" id="managerId" [(ngModel)]="managerId" name="managerId" required />
+    </div>
+    <button type="submit">Attribuer Responsable</button>
+  </form>
+
+  <!-- Affichage de la hiérarchie des départements -->
+  <h3>Hiérarchie des Départements</h3>
+  <ul>
+    <li *ngFor="let department of departments">
+      {{ department.name }}
+      <ul *ngIf="department.subDepartments.length > 0">
+        <li *ngFor="let subDepartment of department.subDepartments">{{ subDepartment.name }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>

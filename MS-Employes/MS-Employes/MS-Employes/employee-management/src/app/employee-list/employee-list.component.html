@@ -1,0 +1,49 @@
+<h2>Employee List</h2>
+<button class="btn btn-success mb-3" routerLink="/add-employee">Créer un nouvel employé</button>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Contract Type</th>
+    <th>Position</th>
+    <th>Salary</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let employee of employees">
+    <td>{{ employee.id }}</td>
+    <td>{{ employee.name }}</td>
+    <td>{{ employee.contractType }}</td>
+    <td>{{ employee.position }}</td>
+    <td>{{ employee.salary }}</td>
+    <td>
+      <button class="btn btn-primary" (click)="viewDetails(employee)">Details</button>
+      <button class="btn btn-warning" (click)="editEmployee(employee)">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Modal pour afficher les détails -->
+<div class="modal" tabindex="-1" id="detailsModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Employee Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Name:</strong> {{ selectedEmployee?.name }}</p>
+        <p><strong>Contract Type:</strong> {{ selectedEmployee?.contractType }}</p>
+        <p><strong>Position:</strong> {{ selectedEmployee?.position }}</p>
+        <p><strong>Salary:</strong> {{ selectedEmployee?.salary }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
